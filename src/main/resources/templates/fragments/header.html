@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+<div th:fragment="header-css">
+<meta charset="UTF-8" />
+<title>Manufast</title>
+ <div th:fragment="header-css">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/css/bootstrap.min.css}" />
+<link rel="stylesheet" type="text/css" 
+	th:href="@{/css/style.css}" />
+	
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet' type='text/css'/>
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"/>
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css"/>
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.1/css/buttons.dataTables.min.css"/>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css"/>	
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.9/css/jquery.dataTables.min.css"/>
+		<link rel="stylesheet" href="https://cdn.datatables.net/responsive/1.0.7/css/responsive.dataTables.min.css"/>
+	
+	
+	
+	
+	
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>	
+  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>	
+  <script src="https://cdn.datatables.net/1.10.9/js/jquery.dataTables.min.js"></script>	
+  <script src="https://cdn.datatables.net/responsive/1.0.7/js/dataTables.responsive.min.js"></script>	
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script  src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  
+  <script  src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script  src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>
+	<script  src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+	<script  src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.colVis.min.js"></script>
+		<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+		<script src="https://cdn.datatables.net/buttons/1.5.1/js/dataTables.buttons.min.js"></script>
+		<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.flash.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+		<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.html5.min.js"></script>
+		<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.print.min.js"></script>
+		<script src="https://cdn.datatables.net/buttons/1.5.1/js/buttons.colVis.min.js"></script>
+		
+		
+		
+		
+</div>
+</div>
+</head>
+
+	<body>
+	<div class="container">
+	<div th:fragment="header">
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+    
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+      <li><img th:src="@{/img/picture.png}" /></li>
+        <li><a th:href="@{/plainte/form}">Home</a></li>
+        <li class="dropdown">
+          <a sec:authorize="isAuthenticated()" class="dropdown-toggle" data-toggle="dropdown" href="#">Plainte(s)<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a th:href="@{/plainte/index}">Gestion Plainte(s)</a></li>
+            <li><a th:href="@{/plainte/plaintes}"><img  th:src="@{/img/glyphicons-136-inbox-out.png}" style="width:22%;max-width:22px"/>&nbsp;&nbsp;Export</a></li>
+            
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li sec:authorize="!isAuthenticated()"><a href="/login"><span class="glyphicon " ><img  th:src="@{/img/glyphicons-4-user.png}"/></span> Login</a></li>
+        <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}"><span class="glyphicon " ><img  th:src="@{/img/glyphicons-388-log-out.png}"/></span> Logout</a></li>
+       	
+        <li sec:authorize="isAuthenticated()"><a th:href="@{/formUser}" ><span class="glyphicon " ><img   th:src="@{/img/glyphicons-7-user-add.png}"/></span> Sign Up</a></li>
+       
+       
+      </ul>
+    </div>
+  </div>
+ <!--  <ul  class="nav navbar-nav  navbar-right">
+					<li><a th:href="@{/logout}"
+					th:text="${#httpServletRequest.remoteUser}"></a></li>
+
+				</ul> -->
+</nav>
+  
+	<div class="welcome">
+            <span sec:authorize="isAuthenticated()">Bienvenu(e) <span sec:authentication="name"></span></span>
+        </div>
+	</div>
+	
+</div>
+
+</body>
+   
+</html>

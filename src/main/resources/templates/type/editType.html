@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8" />
+<div th:replace="fragments/header :: header-css"/>
+
+</head>
+
+<body>
+<div th:replace="fragments/header :: header"/>
+<div class="container">
+		<div class="panel panel-default">
+			<div class="panel-heading">Update Type artiste</div>
+			<div class="panel-body">
+				<form th:action="@{upDate}" method="post"
+				 th:object="${type}">
+				 <div class="form-group">
+						<label class="control-label">ID type :</label> <input
+							type="text" th:field="*{id}" class="form-control" /> <span
+							class="text-danger" th:errors="*{id}"></span>
+					</div>
+				 <div class="form-group">
+						<label class="control-label">Inititulé :</label> <input
+							type="text" th:field="*{intitule}" class="form-control" /> <span
+							class="text-danger" th:errors="*{intitule}"></span>
+					</div>
+				
+					<div class="form-group ">
+		
+					<div>
+						<button type="submit" class="btn btn-info">Save</button>
+					</div>
+
+	</form>
+	</div>
+	</div>
+	</div>
+	
+
+<div  th:replace="fragments/footer :: footer"/>
+</body>
+</html>

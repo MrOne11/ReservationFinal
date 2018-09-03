@@ -1,0 +1,95 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+
+<meta charset="UTF-8" />
+<div th:replace="fragments/header :: header-css" />
+</head>
+
+<body>
+
+
+
+	<div th:replace="fragments/header :: header" />
+	<div class="container-fluid">
+		<div class="table-responsive">
+			<table id="plaintes"
+				class="table table-striped table-bordered nowrap" cellspacing="0"
+				width="100%">
+		<form th:action="@{index}" method="get">
+
+			<div class="input-group">
+				<span class="input-group-addon"> <a
+					th:href="@{/responsableDec/{respDec}(respDec=${motcle})}"> <img
+						th:src="@{/img/glyphicons-28-search.png}" width="20px" /></a> 
+					
+				</span> <input th:value="${motcle}" type="text" class="form-control"
+					name="motcle" placeholder="Intitulé" />
+			</div>
+
+
+		</form>
+		<br />
+	
+			<br />
+
+	
+	
+
+
+
+	
+		
+			<thead>
+				<tr>
+					<th>ID Type</th>
+					<th>Intitulé</th>
+				
+					<th><em class="fa fa-cog"></em></th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="p:${pageType.content}">
+					<td th:text="${p.id}"></td>
+					<td th:text="${p.intitule}"></td>
+					
+		<td align="center">
+
+                              	 <a id="myBtn"
+						class="btn btn-danger" onclick="return confirm('Etes vous sure?')"
+						th:href="@{supprimer(id=${p.id})}"> Supprimer</a> <a
+						id="myBtn" class="btn btn-success"
+						th:href="@{edit(id=${p.id})}"> Editer</a>
+                            </td>
+
+
+
+
+
+
+				</tr>
+			</tbody>
+		</table>
+	
+	
+	<div class="demo-container">
+		<div id="gridContainer"></div>
+	</div>
+	<div class="container">
+		<ul class=" nav nav-pills">
+			<li th:each="pg:${pages}" th:class="${pg==pageCourante}?active:''">
+				<a th:text="${pg+1}" th:href="@{index(page=${pg},motcle=${motcle})}"></a>
+			</li>
+		</ul>
+
+	</div>
+	</div>
+	</div>
+	<div th:replace="fragments/footer :: footer" />
+
+</body>
+</html>

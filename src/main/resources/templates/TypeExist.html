@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <div th:replace="fragments/header :: header-css"/>
+</head>
+<body>
+<div th:replace="fragments/header :: header"/>
+	<div layout:fragment="content" >
+	<div class="col-md-6 col-md-offset-3">
+	
+		<div class="panel panel-green spacer">
+		 <div class="panel-heading">Message</div>
+			<div class="panel-body">
+				<h4 class="red">Cet type existe déja</h4>
+		   </div>
+		 </div>
+	    </div>
+	    </div>
+</body>
+</html>

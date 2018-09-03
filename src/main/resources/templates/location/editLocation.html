@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<meta charset="UTF-8" />
+<div th:replace="fragments/header :: header-css"/>
+
+</head>
+
+<body>
+<div th:replace="fragments/header :: header"/>
+<div class="container">
+		<div class="panel panel-default">
+			<div class="panel-heading">Update  artiste</div>
+			<div class="panel-body">
+				<form th:action="@{upDate}" method="post"
+				 th:object="${location}">
+					
+					<div class="form-group">
+						<label class="control-label">ID :</label> <input type="text"
+							th:field="*{id}" class="form-control" /> <span
+							class="text-danger" th:errors="*{id}"></span>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Désignation :</label> <input type="text"
+							th:field="*{designation}" class="form-control" /> <span
+							class="text-danger" th:errors="*{designation}"></span>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Slug :</label> <input type="text"
+							th:field="*{slug}" class="form-control" /> <span
+							class="text-danger" th:errors="*{slug}"></span>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Adresse :</label> <input type="text"
+							th:field="*{address}" class="form-control" /> <span
+							class="text-danger" th:errors="*{address}"></span>
+					</div>
+
+				
+		
+					<div class="form-group">
+					<label class="control-label">Locatity :</label>
+					<span class="text-danger" th:errors="*{locality}"></span>
+					<select class="form-control required" th:field="*{locality}"  >
+		       			 <option th:each="locality : ${ListesLocality}" 
+		     
+		                		 th:field="*{locality}" 
+		                		 th:value="${locality.id}" 
+		                      	 th:text="${locality.name}+' | ' +${locality.postalCode}">                  
+		       			 </option>
+					</select>
+					</div> 
+					
+					<div class="form-group">
+						<label class="control-label">Site Web :</label> <input type="text"
+							th:field="*{website}" class="form-control" /> <span
+							class="text-danger" th:errors="*{website}"></span>
+					</div>
+					
+					<div class="form-group">
+						<label class="control-label">Téléphone :</label> <input type="text"
+							th:field="*{phone}" class="form-control" /> <span
+							class="text-danger" th:errors="*{phone}"></span>
+					</div>
+		
+				
+					<div class="form-group ">
+		
+					<div>
+						<button type="submit" class="btn btn-info">Save</button>
+					</div>
+
+	</form>
+	</div>
+	</div>
+	</div>
+	
+
+<div  th:replace="fragments/footer :: footer"/>
+</body>
+</html>
