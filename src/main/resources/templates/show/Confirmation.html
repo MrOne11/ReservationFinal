@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+
+<meta charset="UTF-8" />
+<div th:replace="fragments/header :: header-css" />
+</head>
+
+<body>
+	<div th:replace="fragments/header :: header" />
+	<div class="col-md-6 col-xs-12  col-md-offset-3 spacer">
+
+		<div class="panel panel-green">
+			<div class="panel-heading">Confirmation de l'ajout d'un Show</div>
+			<div class="form-body">
+				<div class="form-group">
+					<label>ID Show :</label> <label th:text="${show.id}"></label>
+				</div>
+				
+				<div class="form-group">
+					<label>Titre :</label> <label th:text="${show.title}"></label>
+				</div>
+				
+				<div class="form-group">
+					<label>Slug :</label> <label th:text="${show.slug}"></label>
+				</div>
+				
+				<div class="form-group">
+					<label>Prix :</label> <label th:text="${show.price}"></label>
+				</div>
+				
+				<div class="form-group">
+					<label>Bookable :</label> <label th:text="${show.bookable}"></label>
+				</div>
+				
+				<div class="form-group">
+					<label>Location :</label> <label th:text="${show.location.designation}"></label>
+				</div>
+				
+				
+
+
+
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>

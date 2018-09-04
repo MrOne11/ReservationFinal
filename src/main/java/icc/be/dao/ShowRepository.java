@@ -10,10 +10,10 @@ import icc.be.entites.Show;
 
 public interface ShowRepository extends JpaRepository<Show, Long>{
 	public Page<Show> findByTitle(String title, Pageable pageable);
-	
+	public Show findByTitle(String title);
 	public Page<Show> findByBookable(boolean bookable, Pageable pageable);
 	
 		@Query("select s from Shows  s where s.title like :x")
-	public Page<Show> chercherEtudiants(@Param("x") String motcle, Pageable pageable);
+	public Page<Show> chercherShowParTitle(@Param("x") String motcle, Pageable pageable);
 
 }

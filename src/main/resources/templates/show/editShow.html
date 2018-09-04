@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+
+
+	 
+	 
+	 
+<div th:replace="fragments/header :: header-css" />
+</head>
+<body>
+	<div th:replace="fragments/header :: header" />
+
+	<div class="container-fluid">
+		<div class="panel panel-default">
+			<div class="panel-heading">Ajout locality</div>
+			<div class="panel-body">
+				<form th:action="@{upDate}" method="post"
+					th:object="${show}">
+					
+			<div class="form-group ">
+				<label class="control-label">ID :</label>
+				<input type="text" th:field="*{id}" class="form-control" />
+				<span class="text-danger"  th:errors="*{id}" ></span>
+			</div>
+			<div class="form-group ">
+				<label class="control-label">Titre :</label>
+				<input type="text" th:field="*{title}" class="form-control" />
+				<span class="text-danger"  th:errors="*{title}" ></span>
+			</div>
+			<div class="form-group ">
+				<label class="control-label">Slug :</label>
+				<input type="text" th:field="*{slug}" class="form-control" />
+				<span class="text-danger"  th:errors="*{slug}" ></span>
+			</div>
+			<div class="form-group ">
+				<label class="control-label">Prix :</label>
+				<input type="text" th:field="*{price}" class="form-control" />
+				<span class="text-danger"  th:errors="*{price}" ></span>
+			</div>	
+		
+		
+			<div class="form-group">
+					<label class="control-label">Locatity :</label>
+					<span class="text-danger" th:errors="*{location}"></span>
+					<select class="form-control required" th:field="*{location}"  >
+		       			 <option th:each="location : ${ListesLocation}" 
+		     
+		                		 th:field="*{location}" 
+		                		 th:value="${location.id}" 
+		                      	 th:text="${location.designation}+' | ' +${location.id}">                  
+		       			 </option>
+					</select>
+				</div> 
+				
+				<div class="form-group">
+				<label class="control-label">Bookable :</label>
+					
+					<input type="checkbox" name="bookable" th:checked="${flag}" />
+					
+
+				</div>
+				
+					
+
+				
+					
+			
+			<div>
+						<button type="submit" class="btn btn-info">Save</button>
+					</div>
+				</form>
+				
+		
+				
+				
+				
+
+ 
+
+
+			</div>
+		</div>
+	</div>
+
+
+
+
+  
+
+	<div th:replace="fragments/footer :: footer" />
+
+</body>
+
+</html>
