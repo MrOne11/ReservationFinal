@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+
+
+	 
+	 
+	 
+<div th:replace="fragments/header :: header-css" />
+</head>
+<body>
+	<div th:replace="fragments/header :: header" />
+
+	<div class="container-fluid">
+		<div class="panel panel-default">
+			<div class="panel-heading">Ajout Représentation</div>
+			<div class="panel-body">
+				<form th:action="@{saveRepr}" method="post"
+					th:object="${representation}">
+		
+			
+			
+			<div class="form-group">
+					<label class="control-label">Show :</label>
+					<span class="text-danger" th:errors="*{show}"></span>
+					<select class="form-control required" th:field="*{show}"  >
+		       			 <option value=""></option>
+		       			 <option th:each="show : ${show}" 
+		     
+		                		 th:field="*{show}" 
+		                		 th:value="${show.id}" 
+		                      	 th:text="${show.title}">                  
+		       			 </option>
+					</select>
+			</div> 
+			
+			<div class="form-group ">
+				<label class="control-label">Moment :</label>
+				<input type="date" th:field="*{moment}" class="form-control" />
+				<span class="text-danger"  th:errors="*{moment}" ></span>
+			</div>	
+			
+		  <div class="form-group">
+					<label class="control-label">Location :</label>
+					<span class="text-danger" th:errors="*{location}"></span>
+					<select class="form-control required" th:field="*{location}"  >
+		       			 <option value=""></option>
+		       			 <option th:each="location : ${location}" 
+		     			 
+		                		 th:field="*{location}" 
+		                		 th:value="${location.id}" 
+		                      	 th:text="${location.designation}">                  
+		       			 </option>
+					</select>
+			</div>
+		
+		
+
+			
+				
+					
+
+				
+					
+			
+			<div>
+						<button type="submit" class="btn btn-info">Save</button>
+					</div>
+				</form>
+				
+		
+				
+				
+				
+
+ 
+
+
+			</div>
+		</div>
+	</div>
+
+
+
+
+  
+
+	<div th:replace="fragments/footer :: footer" />
+
+</body>
+
+</html>

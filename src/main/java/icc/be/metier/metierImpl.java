@@ -10,9 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 import icc.be.dao.ArtisteRepository;
 import icc.be.dao.LocalityRepository;
 import icc.be.dao.LocationRepository;
+import icc.be.dao.RepresentationRepository;
 import icc.be.dao.ShowRepository;
 import icc.be.entites.Locality;
 import icc.be.entites.Location;
+import icc.be.entites.Representation;
 import icc.be.entites.Show;
 
 
@@ -26,6 +28,8 @@ public class metierImpl implements metier{
 	private LocationRepository locationRepository;
 	@Autowired
 	private ShowRepository showRepository;
+	@Autowired
+	private RepresentationRepository representationRepository;
 	
 	//Association Location et Locality
 	@Override
@@ -38,6 +42,20 @@ public class metierImpl implements metier{
 	}
 	
 	
+
+
+
+
+
+	@Override
+	public Representation addShowToRepresentation(Representation representation, Long idShow, Long idLocation) {
+		Show shows = showRepository.getOne(idShow);
+		representation.setShow(shows);
+		representationRepository.save(representation);
+		return representation;
+	}
+
+
 	@Override
 	public Show addLocationToShow(Show show, Long idlocation) {
 		Location location = locationRepository.getOne(idlocation);

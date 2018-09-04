@@ -1,5 +1,9 @@
 package icc.be.FormVerification;
 
+import java.util.Date;
+
+import icc.be.entites.Location;
+import icc.be.entites.Show;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -9,8 +13,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter @Setter 
-public class FormVerificationShow {
-	private String title;
-	private boolean bookable;
+public class FormVerificationRepresentation {
+	private Location location;
+    private Date moment;
+    private Show show;
 
 }

@@ -130,14 +130,16 @@ public class ShowController {
 				
 				return "show/form";
 			
-			//verifier si le titre existe dans la BD
-			Show showTitle = showRepository.findByTitle(verification.getTitle());		
+			/*//verifier si le titre existe dans la BD
+			Show showTitle = showRepository.findByTitle(verification.getTitle());
+			Show showBookable = showRepository.findByBookable(verification.isBookable());
+			//ce type existe déja 
 			//ce type existe déja 
 			if(showTitle!=null){
 				System.out.println("_-_-_-_-_-_-*****");
 				return "ArtisteExist";
 		
-			}
+			}*/
 			System.out.println(idLocation);
 
 					//faire appel à la méthode add
