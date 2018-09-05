@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+
+
+	 
+	 
+	 
+<div th:replace="fragments/header :: header-css" />
+</head>
+<body>
+	<div th:replace="fragments/header :: header" />
+
+	<div class="container-fluid">
+		<div class="panel panel-default">
+			<div class="panel-heading">Ajout d'un type d'artiste</div>
+			<div class="panel-body">
+				<form th:action="@{saveCountry}" method="post"
+					th:object="${country}">
+			
+			<div class="form-group ">
+				<label class="control-label">Nom du pays :</label>
+				<input type="text" th:field="*{name}" class="form-control" />
+				<span class="text-danger"  th:errors="*{name}" ></span>
+			</div>	
+			
+			<div class="form-group ">
+				<label class="control-label">Slug :</label>
+				<input type="text" th:field="*{slug}" class="form-control" />
+				<span class="text-danger"  th:errors="*{slug}" ></span>
+			</div>
+
+				
+					
+			
+			<div>
+						<button type="submit" class="btn btn-info">Save</button>
+					</div>
+				</form>
+				
+		
+				
+				
+				
+
+ 
+
+
+			</div>
+		</div>
+	</div>
+
+
+
+
+  
+
+	<div th:replace="fragments/footer :: footer" />
+
+</body>
+
+</html>

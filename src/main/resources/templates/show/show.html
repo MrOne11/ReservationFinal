@@ -52,8 +52,11 @@
 					<th>Prix</th>
 					<th>Bookable</th>
 					<th>Location</th>
-				<div sec:authorize="hasRole('ROLE_ADMIN')">
+					<th>Pays</th>
+				<security:authorize access="hasRole('ROLE_USER')">
+
 					<th><em class="fa fa-cog"></em></th>
+				</security:authorize>
 				</div>
 				</tr>
 			</thead>
@@ -66,9 +69,11 @@
 					<td th:text="${p.price}"></td>
 					<td th:text="${p.bookable}"></td>
 					<td th:text="${p.location.designation}"></td>
+					<td th:text="${p.country.name}"></td>
 		
 		
-		<div sec:authorize="hasRole('ROLE_ADMIN')">			
+		<security:authorize access="hasRole('ROLE_USER')">
+			
 		<td align="center">
 
                               	 <a id="myBtn"
@@ -77,6 +82,7 @@
 						id="myBtn" class="btn btn-success"
 						th:href="@{edit(id=${p.id})}"> Editer</a>
            </td>
+           </security:authorize>
            </div>
 
 

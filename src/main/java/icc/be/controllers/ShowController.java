@@ -1,6 +1,7 @@
 package icc.be.controllers;
 import java.io.IOException;
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import icc.be.FormVerification.FormVerificationShow;
+import icc.be.dao.CountryRepository;
 import icc.be.dao.LocationRepository;
 import icc.be.dao.ShowRepository;
+import icc.be.entites.Country;
 import icc.be.entites.Locality;
 import icc.be.entites.Location;
 import icc.be.entites.Show;
@@ -30,6 +33,8 @@ public class ShowController {
 	private LocationRepository locationRepository;
 	@Autowired
 	private metier metier;
+	@Autowired
+	private CountryRepository countryRepository;
 	
 	// Formulaire GET Pour Ajouter un Show
 	@RequestMapping(value = "/form", method = RequestMethod.GET)
@@ -39,6 +44,9 @@ public class ShowController {
 				List<Location> location = locationRepository.findAll();
 				model.addAttribute("show", new Show());
 				model.addAttribute("Location",location);
+				//Récuperer liste des pays
+				List<Country> countries = countryRepository.findAll();
+				model.addAttribute("country",countries);
 		return "show/form";
 
 	}
@@ -48,7 +56,8 @@ public class ShowController {
 	@RequestMapping(value="/saveShow",method=RequestMethod.POST)
 	public String save(@Valid Show show,@Valid FormVerificationShow verification,
 			BindingResult bindingResult,
-			@RequestParam(value="location")Long idLocation)
+			@RequestParam(value="location")Long idLocation,
+			@RequestParam(value="country")Long idCountry)
 					throws IllegalStateException, IOException{
 		if(bindingResult.hasErrors())
 			
@@ -66,7 +75,8 @@ public class ShowController {
 
 				//faire appel à la méthode add
 				//pour faire l'association
-		metier.addLocationToShow(show, idLocation);
+		//metier.addLocationToShow(show, idLocation);
+		metier.addLocationToShow(show, idLocation, idCountry);
 		
 		System.out.println("_-_-_-_COOOONFIIIIIRMM-_-_-*****");
 		return "show/Confirmation";		
@@ -124,7 +134,8 @@ public class ShowController {
 		@RequestMapping(value="/upDate",method=RequestMethod.POST)
 		public String upDate(@Valid Show show,@Valid FormVerificationShow verification,
 				BindingResult bindingResult,
-				@RequestParam(value="location")Long idLocation)
+				@RequestParam(value="location")Long idLocation,
+				@RequestParam(value="country")Long idCountry)
 						throws IllegalStateException, IOException{
 			if(bindingResult.hasErrors())
 				
@@ -144,7 +155,13 @@ public class ShowController {
 
 					//faire appel à la méthode add
 					//pour faire l'association
-			metier.addLocationToShow(show, idLocation);
+			metier.addLocationToShow(show, idLocation, idCountry);
+			
+			//Country country = countryRepository.getOne(idCountry);
+		
+			
+			
+			showRepository.save(show);
 			
 			System.out.println("_-_-_-_COOOONFIIIIIRMM-_-_-*****");
 			return "show/Confirmation";		

@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.Valid;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -36,5 +37,8 @@ public class Show{
 		@ManyToOne(fetch = FetchType.LAZY, optional = false)
 		
 	private Location location;
+	
+		@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	private Country country;
 	
 }

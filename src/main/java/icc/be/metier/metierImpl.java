@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import icc.be.dao.ArtisteRepository;
+import icc.be.dao.CountryRepository;
 import icc.be.dao.LocalityRepository;
 import icc.be.dao.LocationRepository;
 import icc.be.dao.RepresentationRepository;
@@ -15,6 +16,7 @@ import icc.be.dao.ReservationRepository;
 import icc.be.dao.ShowRepository;
 import icc.be.dao.UserRepository;
 import icc.be.entites.AppUser;
+import icc.be.entites.Country;
 import icc.be.entites.Locality;
 import icc.be.entites.Location;
 import icc.be.entites.Representation;
@@ -38,6 +40,8 @@ public class metierImpl implements metier{
 	private UserRepository userRepository;
 	@Autowired
 	private ReservationRepository reservationRepository;
+	@Autowired
+	private CountryRepository countryRepository;
 	
 	//Association Location et Locality
 	@Override
@@ -64,13 +68,7 @@ public class metierImpl implements metier{
 	}
 
 
-	@Override
-	public Show addLocationToShow(Show show, Long idlocation) {
-		Location location = locationRepository.getOne(idlocation);
-		show.setLocation(location);
-		showRepository.save(show);
-		return show;
-	}
+
 
 
 
@@ -87,6 +85,24 @@ public class metierImpl implements metier{
 		reservation.setNbPlace(nbPlace);
 		reservationRepository.save(reservation);
 		return reservation;
+	}
+
+
+
+
+
+
+
+	@Override
+	public Show addLocationToShow(Show show, Long idlocation, Long idCountry) {
+		Location location = locationRepository.getOne(idlocation);
+		Country country = countryRepository.getOne(idCountry);
+		
+		show.setLocation(location);
+		show.setCountry(country);
+		
+		showRepository.save(show);
+		return show;
 	}
 
 

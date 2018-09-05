@@ -49,9 +49,10 @@
 					<th>Titre</th>
 					<th>Moment</th>
 					<th>Location</th>
-				
+				<security:authorize access="hasRole('ROLE_USER')">
+		
 					<th><em class="fa fa-cog"></em></th>
-					
+				</security:authorize>
 				</tr>
 			</thead>
 			<tbody>
@@ -63,7 +64,8 @@
 					
 					
 		<td align="center">
-
+					<security:authorize access="hasRole('ROLE_USER')">
+					
                               	 <a id="myBtn"
 						class="btn btn-danger" onclick="return confirm('Etes vous sure?')"
 						th:href="@{supprimer(id=${p.id})}"> Supprimer</a> <a

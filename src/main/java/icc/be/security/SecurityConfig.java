@@ -63,7 +63,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests().antMatchers(HttpMethod.POST,"/artiste/**").hasAnyAuthority("ADMIN");
 		http.authorizeRequests().antMatchers(HttpMethod.POST,"/representation/**").hasAnyAuthority("ADMIN");
 		http.exceptionHandling().accessDeniedPage("/403");
-		http.authorizeRequests().antMatchers("reservation/form").hasAuthority("USER");
+		http.authorizeRequests().antMatchers("/representation/form").hasAuthority("ADMIN");
+		http.authorizeRequests().antMatchers("/representation/edit").hasAuthority("ADMIN");
+		http.authorizeRequests().antMatchers("/show/edit").hasAuthority("ADMIN");
+
+
+		//http.authorizeRequests().antMatchers("/reservation/form").hasAuthority("USER");
+		
 
 		
 		

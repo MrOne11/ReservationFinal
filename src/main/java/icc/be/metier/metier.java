@@ -8,7 +8,7 @@ import icc.be.entites.Show;
 public interface metier {
 	public Location addLocalityToLocation(Location location, Long idLocality);
 	
-	public Show addLocationToShow(Show show, Long idlocation);
+	public Show addLocationToShow(Show show, Long idlocation, Long idCountry);
 	
 	public Representation addShowToRepresentation(Representation representation, Long idShow,Long idLocation);
 	

@@ -47,16 +47,22 @@
 				<tr>
 					<th>ID Type</th>
 					<th>Intitulé</th>
-				<div sec:authorize="hasRole('ROLE_ADMIN')">
+			<security:authorize access="hasRole('ROLE_USER')">
+
 					<th><em class="fa fa-cog"></em></th>
-				</div>
+				</security:authorize>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="p:${pageType.content}">
 					<td th:text="${p.id}"></td>
 					<td th:text="${p.intitule}"></td>
-					<div sec:authorize="hasRole('ROLE_ADMIN')">
+					
+					
+
+
+					
+					<security:authorize access="hasRole('ROLE_USER')">
 						<td align="center">
 
                               	 <a id="myBtn"
@@ -65,10 +71,11 @@
 						id="myBtn" class="btn btn-success"
 						th:href="@{edit(id=${p.id})}"> Editer</a>
                             </td>
-					</div>
 
+					</security:authorize>
+					
 
-
+				</div>
 
 
 				</tr>
