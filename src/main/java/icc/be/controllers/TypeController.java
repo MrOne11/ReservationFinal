@@ -28,7 +28,7 @@ public class TypeController {
 	@RequestMapping(value="/form",method=RequestMethod.GET)
 	public String formUser(Model model){
 		
-		model.addAttribute("typeArtiste", new Type());
+		model.addAttribute("artiste", new Type());
 		System.out.println("******************");
 		return "type/form";
 		

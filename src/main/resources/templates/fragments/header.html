@@ -22,7 +22,8 @@
 		<link rel="stylesheet" href="https://cdn.datatables.net/responsive/1.0.7/css/responsive.dataTables.min.css"/>
 	
 	
-	
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	
 	
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -74,21 +75,49 @@
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
       <li><img th:src="@{/img/picture.png}" /></li>
-        <li><a th:href="@{/plainte/form}">Home</a></li>
+        <li><a th:href="@{/representation/index}">Home</a></li>
         <li class="dropdown">
-          <a sec:authorize="isAuthenticated()" class="dropdown-toggle" data-toggle="dropdown" href="#">Plainte(s)<span class="caret"></span></a>
+          <a sec:authorize="isAuthenticated()" class="dropdown-toggle" data-toggle="dropdown" href="#">Artiste<span class="caret"></span></a>
           <ul class="dropdown-menu">
-            <li><a th:href="@{/plainte/index}">Gestion Plainte(s)</a></li>
-            <li><a th:href="@{/plainte/plaintes}"><img  th:src="@{/img/glyphicons-136-inbox-out.png}" style="width:22%;max-width:22px"/>&nbsp;&nbsp;Export</a></li>
-            
+            <li><a th:href="@{/artiste/index}">Liste des artistes</a></li>
+            <li><a th:href="@{/artiste/form}">Ajouter un artiste</a></li>
           </ul>
         </li>
+        <li class="dropdown">
+          <a sec:authorize="isAuthenticated()" class="dropdown-toggle" data-toggle="dropdown" href="#">Type Artiste<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a th:href="@{/type/index}">Liste des types d'artiste</a></li>
+            <li><a th:href="@{/type/form}">Ajouter un type</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a sec:authorize="isAuthenticated()" class="dropdown-toggle" data-toggle="dropdown" href="#">Show<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a th:href="@{/show/index}">Liste des Shows</a></li>
+            <li><a th:href="@{/show/form}">Ajouter un show</a></li>
+          </ul>
+        </li>
+        
+         <li class="dropdown">
+          <a sec:authorize="isAuthenticated()" class="dropdown-toggle" data-toggle="dropdown" href="#">Représentation(s)<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a th:href="@{/representation/index}">Liste Représentation(s)</a></li>
+            <li><a th:href="@{/representation/form}">Ajouter une représentation</a></li>
+          </ul>
+        </li>
+         <li class="dropdown">
+          <a sec:authorize="isAuthenticated()" class="dropdown-toggle" data-toggle="dropdown" href="#">Réservation<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a th:href="@{/reservation/form}">Réserver une Représentation</a></li>
+          </ul>
+        </li>
+        
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li sec:authorize="!isAuthenticated()"><a href="/login"><span class="glyphicon " ><img  th:src="@{/img/glyphicons-4-user.png}"/></span> Login</a></li>
         <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}"><span class="glyphicon " ><img  th:src="@{/img/glyphicons-388-log-out.png}"/></span> Logout</a></li>
        	
-        <li sec:authorize="isAuthenticated()"><a th:href="@{/formUser}" ><span class="glyphicon " ><img   th:src="@{/img/glyphicons-7-user-add.png}"/></span> Sign Up</a></li>
+        <li sec:authorize="!isAuthenticated()" ><a th:href="@{/formUser}" ><span class="glyphicon " ><img   th:src="@{/img/glyphicons-7-user-add.png}"/></span> Sign Up</a></li>
        
        
       </ul>

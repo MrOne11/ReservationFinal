@@ -1,19 +1,26 @@
 package icc.be.controllers;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 
 import javax.validation.Valid;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import icc.be.FormVerification.FormVerificationArtiste;
 import icc.be.FormVerification.FormVerificationType;
@@ -28,7 +35,10 @@ public class ArtisteController {
 
 	@Autowired
 	private ArtisteRepository artisteRepository;
-
+	
+	@Value("${dir.images}")
+	private String imageDir;
+	
 	// Formulaire GET Pour Ajouter un artiste
 	@RequestMapping(value = "/form", method = RequestMethod.GET)
 	public String formArtist(Model model) {
@@ -42,11 +52,14 @@ public class ArtisteController {
 	// POST ARTSITE
 	@RequestMapping(value = "/saveArtiste", method = RequestMethod.POST)
 	public String save(@Valid Artiste artiste, BindingResult bindingResult,
-			@Valid FormVerificationArtiste verification) throws IllegalStateException, IOException {
+			@Valid FormVerificationArtiste verification,
+			@RequestParam(name="picture") MultipartFile file) throws IllegalStateException, IOException {
 		if (bindingResult.hasErrors())
 			return "artiste/form";
 		// Verifier si le nom et prénom existe deja ou pas
-
+		if(!(file.isEmpty())){
+			artiste.setPhoto(file.getOriginalFilename());
+			}
 		Artiste nom = artisteRepository.findByNom(verification.getNom());
 		Artiste prenom = artisteRepository.findByPrenom(verification.getPrenom());
 
@@ -57,8 +70,21 @@ public class ArtisteController {
 			return "ArtisteExist";
 
 		}
-
+		artisteRepository.save(artiste);
+		if(!(file.isEmpty())){
+			artiste.setPhoto(file.getOriginalFilename());
+			file.transferTo(new File(imageDir+artiste.getId()));
+		}
 		return "artiste/Confirmation";
+	}
+	
+	// retourner un ficher (photo)
+	@RequestMapping(value="/getPhoto",
+			produces=MediaType.IMAGE_JPEG_VALUE)
+	@ResponseBody
+	public byte [] getPhoto(Long id) throws Exception{
+		File f=new File(imageDir+id);
+		return IOUtils.toByteArray(new FileInputStream(f));
 	}
 	
 	
@@ -102,16 +128,32 @@ public class ArtisteController {
 	}
 	
 	
-	@RequestMapping(value="/upDate",method=RequestMethod.POST)
-	public String update(Artiste artiste,BindingResult bindingResult){
-		if(bindingResult.hasErrors())
-			return "artiste/editArtiste";
-		System.out.println(artiste);
-		artiste.setId(artiste.getId());
+	// POST ARTSITE
+	@RequestMapping(value = "/upDate", method = RequestMethod.POST)
+	public String update(@Valid Artiste artiste, BindingResult bindingResult,
+			@Valid FormVerificationArtiste verification,
+			@RequestParam(name="picture") MultipartFile file) throws IllegalStateException, IOException {
+		if (bindingResult.hasErrors())
+			return "artiste/form";
+		// Verifier si le nom et prénom existe deja ou pas
+		if(!(file.isEmpty())){
+			artiste.setPhoto(file.getOriginalFilename());
+			}
+		Artiste nom = artisteRepository.findByNom(verification.getNom());
+		Artiste prenom = artisteRepository.findByPrenom(verification.getPrenom());
+
+		// renvoit la vue Artiste existe
+		// Si le nom et prénom existent dans la BD
+		if (nom != null & prenom != null) {
+			System.out.println("_-_-_-_-_-_-*****");
+			return "ArtisteExist";
+
+		}
 		artisteRepository.save(artiste);
-		System.out.println("--------------");
-		System.out.println(artiste);
-		
+		if(!(file.isEmpty())){
+			artiste.setPhoto(file.getOriginalFilename());
+			file.transferTo(new File(imageDir+artiste.getId()));
+		}
 		return "artiste/Confirmation";
 	}
 }

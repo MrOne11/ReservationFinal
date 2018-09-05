@@ -38,11 +38,11 @@ public class Artiste implements Serializable{
 		@Column(name="MAIL", length=50)
 	private String mail;
 	private String photo;
-	@ManyToMany(cascade = {CascadeType.ALL})
+/*	@ManyToMany(cascade = {CascadeType.ALL})
 	@JoinTable(name="ARTISTE_TYPE", 
 				joinColumns={@JoinColumn(name="ARTISTE_ID")}, 
 				inverseJoinColumns={@JoinColumn(name="TYPE_ID")})
-	private Set<Type> typeArtistes = new HashSet<Type>();
+	private Set<Type> typeArtistes = new HashSet<Type>();*/
 			
 			public Artiste(String nom, String prenom, Date dateNaissance, String mail, String photo) {
 				

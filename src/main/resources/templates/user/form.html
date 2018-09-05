@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+<div th:replace="fragments/header :: header-css"/>
+</head>
+<body>
+<div th:replace="fragments/header :: header"/>
+<br/>
+<div class="container">
+	<div class="panel panel-green">
+		<div class="panel-heading">Ajout Admin</div>
+			<div  class="panel-body">
+			<form th:action="@{saveUser}" method="post" 
+			th:object="${appUser}">
+			<div class="form-group ">
+				<label class="control-label">Nom :</label>
+				<input type="text" th:field="*{nom}" class="form-control"/>
+				<span class="text-danger" th:errors="*{nom}" th:text="${error?.username}"></span>
+			</div>
+			<div class="form-group ">
+				<label class="control-label">Prènom :</label>
+				<input type="text" th:field="*{prenom}" class="form-control"/>
+				<span class="text-danger" th:errors="*{prenom}" th:text="${error?.username}"></span>
+			</div>
+			<div class="form-group ">
+				<label class="control-label">E-mail :</label>
+				<input type="text" th:field="*{mail}" class="form-control"/>
+				<span class="text-danger" th:errors="*{mail}" th:text="${error?.username}"></span>
+			</div>
+			<div class="form-group ">
+				<label class="control-label">Username :</label>
+				<input type="text" th:field="*{username}" class="form-control"/>
+				<span class="text-danger" th:errors="*{username}" th:text="${error?.username}"></span>
+			</div>
+			<div class="form-group ">
+				<label class="control-label">Password :</label>
+				<input type="password" th:field="*{password}" class="form-control" />
+				<span class="text-danger"  th:errors="*{password}" ></span>
+			</div>
+	
+			
+	
+			
+		
+		
+
+			<div>
+				<button type="submit" class="btn btn-info">Save</button>
+			</div>
+			</form>
+			</div>
+	</div>
+</div>
+		<div  th:replace="fragments/footer :: footer"/>
+	
+
+</body>
+
+</html>

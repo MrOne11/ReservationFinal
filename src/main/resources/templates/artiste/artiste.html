@@ -46,31 +46,37 @@
 			<thead>
 				<tr>
 					<th>ID Artiste</th>
+					<th>Picture</th>
 					<th>Nom</th>
 					<th>Prénom</th>
 					<th>Date de naissance</th>
 					<th>E-mail</th>
-				
+				<div sec:authorize="hasRole('ROLE_ADMIN')">
 					<th><em class="fa fa-cog"></em></th>
-					
+				</div>
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="p:${pageArtiste.content}">
 					<td th:text="${p.id}"></td>
+					<td>
+						<img class="img-circle"  th:src="@{getPhoto(id=${p.Id})}" width="100" height="100"/>
+					</td>
 					<td th:text="${p.nom}"></td>
 					<td th:text="${p.prenom}"></td>
 					<td th:text="${p.dateNaissance}"></td>
 					<td th:text="${p.mail}"></td>
 					
-		<td align="center">
+					<div sec:authorize="hasRole('ROLE_ADMIN')">
+					<td align="center">
 
                               	 <a id="myBtn"
 						class="btn btn-danger" onclick="return confirm('Etes vous sure?')"
 						th:href="@{supprimer(id=${p.id})}"> Supprimer</a> <a
 						id="myBtn" class="btn btn-success"
 						th:href="@{edit(id=${p.id})}"> Editer</a>
-                            </td>
+                     </td>
+                     </div>
 
 
 

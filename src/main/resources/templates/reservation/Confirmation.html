@@ -12,24 +12,31 @@
 	<div class="col-md-6 col-xs-12  col-md-offset-3 spacer">
 
 		<div class="panel panel-green">
-			<div class="panel-heading">Confirmation de l'ajout d'un artiste</div>
+			<div class="panel-heading">Confirmation de votre réservation</div>
 			<div class="form-body">
 				<div class="form-group">
-					<label>ID Artiste :</label> <label th:text="${artiste.id}"></label>
+					<label>ID Réservation :</label> <label th:text="${reservation.id}"></label>
 				</div>
+				
 				<div class="form-group">
-					<label>Nom :</label> <label th:text="${artiste.nom}"></label>
+					<label>Titre du Show :</label> <label th:text="${reservation.representation.show.title}"></label>
 				</div>
+				
 				<div class="form-group">
-					<label>Prénom :</label> <label th:text="${artiste.nom}"></label>
+					<label>Location :</label> <label th:text="${reservation.representation.show.location.designation}"></label>
 				</div>
+				
 				<div class="form-group">
-					<label>Date de naissance :</label> <label th:text="${artiste.dateNaissance}"></label>
+					<label>Nombre de place :</label> <label th:text="${reservation.nbPlace}"></label>
 				</div>
+				
 				<div class="form-group">
-					<label>E-mail:</label> <label th:text="${artiste.mail}"></label>
+					<label>Moment :</label> <label th:text="${reservation.representation.moment}"></label>
 				</div>
+				
+				
 			
+				
 
 
 

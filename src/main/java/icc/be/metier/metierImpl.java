@@ -11,10 +11,14 @@ import icc.be.dao.ArtisteRepository;
 import icc.be.dao.LocalityRepository;
 import icc.be.dao.LocationRepository;
 import icc.be.dao.RepresentationRepository;
+import icc.be.dao.ReservationRepository;
 import icc.be.dao.ShowRepository;
+import icc.be.dao.UserRepository;
+import icc.be.entites.AppUser;
 import icc.be.entites.Locality;
 import icc.be.entites.Location;
 import icc.be.entites.Representation;
+import icc.be.entites.Reservation;
 import icc.be.entites.Show;
 
 
@@ -30,6 +34,10 @@ public class metierImpl implements metier{
 	private ShowRepository showRepository;
 	@Autowired
 	private RepresentationRepository representationRepository;
+	@Autowired
+	private UserRepository userRepository;
+	@Autowired
+	private ReservationRepository reservationRepository;
 	
 	//Association Location et Locality
 	@Override
@@ -63,6 +71,31 @@ public class metierImpl implements metier{
 		showRepository.save(show);
 		return show;
 	}
+
+
+
+
+
+
+
+	@Override
+	public Reservation reservation(Reservation reservation, Long idRepresentation, Long idUser, Integer nbPlace) {
+		AppUser  user = userRepository.getOne(idUser);
+		Representation representation = representationRepository.getOne(idRepresentation);
+		reservation.setRepresentation(representation);
+		reservation.setUser(user);
+		reservation.setNbPlace(nbPlace);
+		reservationRepository.save(reservation);
+		return reservation;
+	}
+
+
+
+
+
+
+
+
 	
 	
 

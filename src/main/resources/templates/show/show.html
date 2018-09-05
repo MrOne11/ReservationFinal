@@ -52,9 +52,9 @@
 					<th>Prix</th>
 					<th>Bookable</th>
 					<th>Location</th>
-				
+				<div sec:authorize="hasRole('ROLE_ADMIN')">
 					<th><em class="fa fa-cog"></em></th>
-					
+				</div>
 				</tr>
 			</thead>
 			<tbody>
@@ -66,7 +66,9 @@
 					<td th:text="${p.price}"></td>
 					<td th:text="${p.bookable}"></td>
 					<td th:text="${p.location.designation}"></td>
-					
+		
+		
+		<div sec:authorize="hasRole('ROLE_ADMIN')">			
 		<td align="center">
 
                               	 <a id="myBtn"
@@ -74,7 +76,8 @@
 						th:href="@{supprimer(id=${p.id})}"> Supprimer</a> <a
 						id="myBtn" class="btn btn-success"
 						th:href="@{edit(id=${p.id})}"> Editer</a>
-                            </td>
+           </td>
+           </div>
 
 
 

@@ -17,6 +17,7 @@ public interface RepresentationRepository extends JpaRepository<Representation, 
 	
 	@Query("select r from Representation  r where r.show.title like :x")
 	public Page<Representation> chercherParTitle(@Param("x") String motcle, Pageable pageable);
+
 	
 	public Representation findByShow(Show show);
 	

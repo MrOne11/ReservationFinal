@@ -1,19 +1,26 @@
 package icc.be.controllers;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
 import java.io.IOException;
+import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import icc.be.FormVerification.FormVerificationArtiste;
 import icc.be.FormVerification.FormVerificationRepresentation;
@@ -21,6 +28,8 @@ import icc.be.FormVerification.FormVerificationShow;
 import icc.be.dao.LocationRepository;
 import icc.be.dao.RepresentationRepository;
 import icc.be.dao.ShowRepository;
+import icc.be.dao.UserRepository;
+import icc.be.entites.AppUser;
 import icc.be.entites.Artiste;
 import icc.be.entites.Location;
 import icc.be.entites.Representation;
@@ -39,23 +48,26 @@ public class RepresentationController {
 	private LocationRepository locationRepository;
 	@Autowired
 	private metier metier;
+	@Autowired
+	private UserRepository user;
+	
+	
+
 	
 	// Formulaire GET Pour Ajouter une représentation
-	@RequestMapping(value = "/form", method = RequestMethod.GET)
-	public String formRepresentation(Model model) {
+		@RequestMapping(value = "/form", method = RequestMethod.GET)
+		public String formRepresentation(Model model) {
 
-				//Recuperer la liste de show
-				List<Show> shows = showRepository.findAll();
-				//Recuperer La liste de location
-				List<Location> location = locationRepository.findAll();
-				model.addAttribute("representation", new Representation());
-				model.addAttribute("show",shows);
-				model.addAttribute("location",location);
-		return "representation/form";
+					//Recuperer la liste de show
+					List<Show> shows = showRepository.findAll();
+					//Recuperer La liste de location
+					List<Location> location = locationRepository.findAll();
+					model.addAttribute("representation", new Representation());
+					model.addAttribute("show",shows);
+					model.addAttribute("location",location);
+			return "representation/form";
 
-	}
-	
-	
+		}
 	
 	//POST FORMULAIRE 
 
@@ -92,7 +104,7 @@ public class RepresentationController {
 		model.addAttribute("pageCourante",p);
 		model.addAttribute("motcle",mc);
 
-		
+	
 		return "representation/representation";
 	}
 
@@ -143,4 +155,11 @@ public class RepresentationController {
 		metier.addShowToRepresentation(representation, idShow, idLocation);
 		return "representation/Confirmation";
 	}
+	
+
+	
+
+	
+
+	
 }
